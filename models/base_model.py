@@ -4,12 +4,8 @@ Class BaseModel that defines all common
 attributes/methods for other classes
 """
 
-#import models
+# import models
 import uuid
-"""
-UUID = Universally Unique Identifiers
-The goal is to have unique id for each BaseModel
-"""
 from datetime import datetime
 
 
@@ -24,7 +20,6 @@ class BaseModel:
         Args:
             - args: unused until now
             - kwargs: each key of this dictionary is an attribute name
-        
         """
 
         if kwargs is not None and len(kwargs) > 0:
