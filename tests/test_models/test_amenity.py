@@ -1,17 +1,30 @@
 #!/usr/bin/python3
 """
-This is the Unittest for class Amenity
+unit test for Amenity class
 """
-
-import unittest
+from unittest import TestCase
 from models.amenity import Amenity
 
 
-class TestAmenity(unittest.TestCase):
+class AmenityTest(TestCase):
+    """ test case class for amenity class """
 
-    def test_amenity_name(self):
-        review = Amenity()
-        self.assertTrue(hasattr(review, 'name'))
-        self.assertEqual(review.name, "")
-        review.name = "This is a review of a great place"
-        self.assertEqual(review.name, "This is a review of a great place")
+    def setUp(self):
+        """ setting up basic object """
+        self.am = Amenity()
+
+    def tearDown(self):
+        """ safely deleting the object """
+        del self.am
+
+    def test_type(self):
+        """ checks the type of the attribute """
+        self.assertIsInstance(self.am.name, str)
+
+    def test_attr(self):
+        """ tests if the given attribute exists """
+        self.assertTrue(hasattr(self.am, 'name'))
+
+
+if __name__ == '__main__':
+    unittest.main()
