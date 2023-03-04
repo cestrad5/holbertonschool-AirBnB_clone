@@ -1,19 +1,23 @@
 #!/usr/bin/python3
 """
-This Module contains the class city
-inherits from class BaseModel
+City Module
 """
-
-
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """define city
-        attribute:
-            state_id: state
-            name: the name of the city
-    """
+    """ City class inherits from BaseModel
 
+    Attributes:
+        state_id: The state id
+        name: input name
+    """
     state_id = ""
     name = ""
+
+    def __init__(self, *args, **kwargs):
+        """ initializes parent class """
+        if args and type(args[0]) is dict:
+            BaseModel.__init__(self, args[0])
+        else:
+            BaseModel.__init__(self)

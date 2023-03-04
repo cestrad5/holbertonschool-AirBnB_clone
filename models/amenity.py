@@ -1,16 +1,21 @@
 #!/usr/bin/python3
 """
-This Module contains the class Amenity
-inherits from class BaseModel
+Amenity Module
 """
-
 from models.base_model import BaseModel
 
-class Amenity(BaseModel):
-    """
-    define Amenity
 
-        attribute:
-            name: the name of the amenity
+class Amenity(BaseModel):
+    """Amenity class inherits from BaseModel
+
+    Attribute:
+        name (str): Public class attribute for Amenity's name
     """
     name = ""
+
+    def __init__(self, *args, **kwargs):
+        """ initializes parent class """
+        if args and type(args[0]) is dict:
+            BaseModel.__init__(self, args[0])
+        else:
+            BaseModel.__init__(self)
