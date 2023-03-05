@@ -1,13 +1,11 @@
 #!/usr/bin/python3
-
+"""
+This is a class BaseModel that defines all common
+attributes/methods for other classes
+"""
 from datetime import datetime
 from uuid import uuid4
 import models
-
-"""
-Module BaseModel
-Parent of all classes
-"""
 
 
 class BaseModel():
