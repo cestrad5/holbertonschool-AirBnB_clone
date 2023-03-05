@@ -13,8 +13,8 @@ class TEST_base(unittest.TestCase):
     @classmethod
     def setup(self):
         self.base1 = BaseModel()
-        self.name = "Ana"
-        self.base1.my_number = 33
+        self.name = "John Smith"
+        self.base1.my_number = 25
 
     @classmethod
     def tearDown(self):
@@ -34,8 +34,8 @@ class TEST_base(unittest.TestCase):
 
     def test_to_dict(self):
         base = BaseModel()
-        base.name = "loki"
-        base.age = 44
+        base.name = "Alex"
+        base.age = 22
         convert = base.to_dict()
         self.assertEqual(convert["id"], base.id)
         self.assertEqual(convert["name"], base.name)

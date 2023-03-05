@@ -9,18 +9,20 @@ import models
 
 
 class BaseModel():
-    """Base class for Airbnb clone project
-    Methods:
-        __init__(self, *args, **kwargs)
-        __str__(self)
-        __save(self)
-        __repr__(self)
-        to_dict(self)
+    """
+    Base class for Airbnb clone project
     """
 
     def __init__(self, *args, **kwargs):
         """
-        Constructor: random uuid, dates created/updated
+        Constructor: 
+        - Generate random uuid, 
+        - created_at and updated_at uses the method strptime() to convert
+        the string representation to a datetime object
+        - if the key is __class__ means that the key is not a
+        class attribute
+        - if kwargs is empty then generate a random identifier
+        and set the corresponding values for created and updated
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -42,33 +44,34 @@ class BaseModel():
 
     def __str__(self):
         """
-        Return string of info about model
+        Returns a formatted string representation of an object
         """
         return ('[{}] ({}) {}'.
                 format(self.__class__.__name__, self.id, self.__dict__))
 
-    def __repr__(self):
-        """
-        returns string representation
-        """
-        return (self.__str__())
-
     def save(self):
         """
-        Update instance with updated time & save to serialized file
+        This method updates the updated_at with the TIME when it's called
         """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         """
-        Return dic with string formats of times; add class info to dic
+        This method will be the first piece of the
+        serialization/deserialization process:
+        create a dictionary representation with 
+        “simple object type” of our BaseModel
+        Returns a dictionary containing all keys/values
+        of __dict__ of the instance
+        - __dict__ is a dictionary of attributes
+        - __class__ is the class of the instance
         """
-        dic = {}
-        dic["__class__"] = self.__class__.__name__
-        for n, i in self.__dict__.items():
-            if isinstance(i, (datetime, )):
-                dic[n] = i.isoformat()
+        temp_dict = {}
+        temp_dict["__class__"] = self.__class__.__name__
+        for key, value in self.__dict__.items():
+            if isinstance(value, datetime):
+                temp_dict[key] = value.isoformat()
             else:
-                dic[n] = i
-        return dic
+                temp_dict[key] = value
+        return temp_dict
