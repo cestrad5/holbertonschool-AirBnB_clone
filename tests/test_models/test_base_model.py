@@ -7,7 +7,6 @@ import unittest
 import os
 from models.base_model import BaseModel
 
-
 class TEST_base(unittest.TestCase):
 
     @classmethod
