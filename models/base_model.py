@@ -15,8 +15,8 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """
-        Constructor: 
-        - Generate random uuid, 
+        Constructor:
+        - Generate random uuid,
         - created_at and updated_at uses the method strptime() to convert
         the string representation to a datetime object
         - if the key is __class__ means that the key is not a
@@ -60,7 +60,7 @@ class BaseModel():
         """
         This method will be the first piece of the
         serialization/deserialization process:
-        create a dictionary representation with 
+        create a dictionary representation with
         “simple object type” of our BaseModel
         Returns a dictionary containing all keys/values
         of __dict__ of the instance

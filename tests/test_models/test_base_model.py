@@ -6,6 +6,8 @@ from datetime import datetime
 import unittest
 import os
 from models.base_model import BaseModel
+#from models import base_model
+
 
 class TEST_base(unittest.TestCase):
 
