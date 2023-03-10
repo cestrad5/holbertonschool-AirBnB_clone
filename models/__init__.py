@@ -1,6 +1,5 @@
-"""
-
 #!/usr/bin/python3
+"""
 Init method
 """
 #from models.engine.file_storage import FileStorage

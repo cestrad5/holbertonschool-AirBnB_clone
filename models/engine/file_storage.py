@@ -11,8 +11,9 @@ from models.review import Review
 
 
 class FileStorage:
-    """serializes instances to a JSON file and deserializes
-    JSON file to instances"""
+    """
+    This class serializes instances to a JSON file and deserializes JSON file to instances
+    """
 
     __file_path = 'file.json'
     __objects = {}
@@ -35,9 +36,6 @@ class FileStorage:
         my_dict = {}
 
         for key, obj in self.__objects.items():
-            '''if type(obj) is dict:
-            my_dict[key] = obj
-            else:'''
             my_dict[key] = obj.to_dict()
         with open(self.__file_path, 'w') as f:
             json.dump(my_dict, f)
@@ -47,8 +45,8 @@ class FileStorage:
         try:
             with open(self.__file_path, 'r') as f:
                 new_obj = json.load(f)
-            for key, value in new_obj.items():
-                obj = self.class_dict[value['__class__']](**value)
-                self.__objects[key] = obj
+                for key, value in new_obj.items():
+                    obj = self.class_dict[value['__class__']](**value)
+                    self.__objects[key] = obj
         except FileNotFoundError:
             pass

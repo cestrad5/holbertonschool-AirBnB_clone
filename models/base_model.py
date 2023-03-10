@@ -67,11 +67,8 @@ class BaseModel():
         - __dict__ is a dictionary of attributes
         - __class__ is the class of the instance
         """
-        temp_dict = {}
-        temp_dict["__class__"] = self.__class__.__name__
-        for key, value in self.__dict__.items():
-            if isinstance(value, datetime):
-                temp_dict[key] = value.isoformat()
-            else:
-                temp_dict[key] = value
+        temp_dict = self.__dict__.copy()
+        temp_dict['__class__'] = self.__class__.__name__
+        temp_dict['created_at'] = self.created_at.isoformat()
+        temp_dict['updated_at'] = self.updated_at.isoformat()
         return temp_dict
