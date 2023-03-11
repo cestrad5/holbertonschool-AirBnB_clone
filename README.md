@@ -1,138 +1,139 @@
-Project name: AirBnB clone
+# Project name: AirBnB clone
 
-Description:
+## First step: Write a command interpreter to manage your AirBnB objects.
+This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
-https://youtu.be/E12Xc3H2xqo
+Each task is linked and will help you to:
+- put in place a parent class (called BaseModel) to take care of the initialization, serialization and deserialization of your future instances
+- create a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
+- create all classes used for AirBnB (User, State, City, Place…) that inherit from BaseModel
+- create the first abstracted storage engine of the project: File storage.
+- create all unittests to validate all our classes and storage engine
 
-Table of Contents
+## What's a command interpreter?
+Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project:
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
 
-1) How to run the AirBn clone
-2) Unit tests
-3) Base Model
-4) Storage
-5) The console
-6) Credits
+## Learning Objectives
+- How to create a Python package
+- How to create a command interpreter in Python using the cmd module
+- What is Unit testing and how to implement it in a large project
+- How to serialize and deserialize a Class
+- How to write and read a JSON file
+- How to manage datetime
+- What is an UUID
+- What is *args and how to use it
+- What is **kwargs and how to use it
+- How to handle named arguments in a function
 
+## Requirements
+- Allowed editors: vi, vim, emacs
+- All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
+- All your files should end with a new line
+- The first line of all your files should be exactly #!/usr/bin/python3
+- A README.md file, at the root of the folder of the project, is mandatory
+- Your code should use the pycodestyle (version 2.8.*)
+- All your files must be executable
+- The length of your files will be tested using wc
+- All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
+- All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
+- All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
+- A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
 
+## Python Unit Tests
 
-1) How to run the AirBn clone
+- Allowed editors: vi, vim, emacs
+- All your files should end with a new line
+- All your test files should be inside a folder tests
+- You have to use the unittest module
+- All your test files should be python files (extension: .py)
+- All your test files and folders should start by test_
+- Your file organization in the tests folder should be the same as your project
+- e.g., For models/base_model.py, unit tests must be in: tests/test_models/test_base_model.py
+- e.g., For models/user.py, unit tests must be in: tests/test_models/test_user.py
+- All your tests should be executed by using this command: python3 -m unittest discover tests
+- You can also test file by file by using this command: python3 -m unittest tests/test_models/test_base_model.py
+- All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
+- All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
+- All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
+- We strongly encourage you to work together on test cases, so that you don’t miss any edge case
 
-- Download the repository
-- Open a new terminal and navigate to the repository
+## How to Use Command Interpreter
 
-                Interactive mode
+|Commands   |Sample Usage   |Functionality   |
+| ------------ | ------------ | ------------ |
+|help   |help   |displays all commands available   |
+|create   |create < class>  |creates new object (ex. a new User, Place)   |
+|update   |User.update('427', {'name' : 'Leo_n_Juan'})   |updates attribute of an object   |
+|destroy   | User.destroy('427')  |destroys specified object   |
+|show   |User.show('427')   |	retrieve an object from a file, a database   |
+|all   |User.all()   |display all objects in class  |
+|count   |User.count()   |returns count of objects in specified class   |
+|quit   |quit   |exits   |
 
-- Run the AirBn clone by running the following command:
-        
-    python3 console.py 
+## Installation
+git clone https://github.com/cestrad5/holbertonschool-AirBnB_clone.git<br>
+cd holbertonschool-AirBnB_clone
 
-                Non interactive mode
+## Usage
 
-- Run this command 
-    
-    echo "help" | ./console.py
+**Interactive Mode**
 
-    replace whats inside the " " with any other command allowed
+$ ./console.py<br>
+(hbnb) help<br>
 
-The commands included are documented:
+##### ###### Documented commands (type help <topic>):
+========================================<br>
+EOF  help  quit<br>
 
-    help - Shows information about the console or its commands - Usage: help or help create
-    
-    EOF - Exits the console (ctrl+ d)
+(hbnb)<br>
+(hbnb)<br>
+(hbnb) quit<br>
+$<br>
 
-    quit - Exits the console
-    
-    create - Creates an instance - Usage: create Class
+**Non-Interactive Mode**
 
-    show - Prints the string representation of an instance - Usage: show Class id
-    
-    destroy - Deletes an instance - Usage: destroy Class id
-    
-    all - Prints all string representation of all instance - Usage: all or all Class
-    
-    update - Updates an instance - Usage: update Class id attribute value
+$ echo "help" | ./console.py<br>
+(hbnb)<br>
 
-2) Test the AirBn clone
+##### ###### DOCUMENTED COMMANDS (TYPE HELP <TOPIC>):
+========================================<br>
+EOF  help  quit<br>
+(hbnb)<br>
+$<br>
+$ cat test_help<br>
+help<br>
+$<br>
+$ cat test_help | ./console.py<br>
+(hbnb)<br>
 
-- All files, classes, functions must be tested with unit tests
+##### ###### Documented commands (type help <topic>):
+========================================<br>
+EOF  help  quit<br>
+(hbnb)<br>
+$<br>
 
-        python3 -m unittest discover tests
+## Files
 
-3) Base Model
+| File Name  |  Description |
+| ------------ | ------------ |
+|[README.md](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/README.md "README.md")   |	A description of the Holberton AirBnB Project   |
+|[AUTHORS](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/AUTHORS "AUTHORS")  |A listing of the project contributors   |
+|[console.py](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/console.py "console.py")   |The program to launch the HBNB console   |
+|[basemodel.py](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/base_model.py "basemodel.py")   |Defines the BaseModel Class   |
+|[user.py ](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/user.py "user.py ")  |Defines the User Class, a subclass of BaseModel   |
+|[file.storage.py ](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/engine/file_storage.py "file.storage.py ") | Defines the FileStorage Class & handles the database  |
+|[city.py](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/city.py "city.py")   |	Defines the City Class, a subclass of BaseModel   |
+|[state.py](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/state.py "state.py")   |	Defines the User Class, a subclass of BaseModel   |
+|[amenity.py](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/amenity.py "amenity.py")   |Defines the Amenity Class, a subclass of BaseModel   |
+|[review.py](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/review.py "review.py")   |Defines the Review Class, a subclass of BaseModel   |
+|[place.py](https://github.com/cestrad5/holbertonschool-AirBnB_clone/blob/main/models/place.py "place.py")   |	Defines the Place Class, a subclass of BaseModel   |
+|[tests](https://github.com/cestrad5/holbertonschool-AirBnB_clone/tree/main/tests "tests")   |	The test directory containing the unittest files for each Class   |
 
-    The base model is a class that defines all common attributes/methods for other classes:
-
-        Public instance attributes:
-            id: string - assign with an uuid when an instance is created:
-                - you can use uuid.uuid4() to generate unique id but don’t forget to convert to a string
-                - the goal is to have unique id for each BaseModel
-
-            created_at: datetime - assign with the current datetime when an instance is created
-
-            updated_at: datetime - assign with the current datetime when an instance is created and it will be updated every time you change your object
-
-        __str__: should print: [<class name>] (<self.id>) <self.__dict__>
-
-        Public instance methods:
-
-            save(self): updates the public instance attribute updated_at with the current datetime
-
-            to_dict(self): returns a dictionary containing all keys/values 
-            
-            of __dict__ of the instance:
-                by using self.__dict__, only instance attributes set will be returned
-                a key __class__ must be added to this dictionary with the class name of the object
-                created_at and updated_at must be converted to string object in ISO format:
-                    - format: %Y-%m-%dT%H:%M:%S.%f (ex: 2017-06-14T22:31:03.285259)
-                    - you can use isoformat() of datetime object
-                This method will be the first piece of the serialization/deserialization process: create a dictionary representation with “simple object type” of our BaseModel
-
-
-4) Storage
-
-    Writing the dictionary representation to a file won’t be relevant:
-
-    Python doesn’t know how to convert a string to a dictionary (easily)
-    It’s not human readable
-    Using this file with another program in Python or other language will be hard.
-    So, you will convert the dictionary representation to a JSON string. JSON is a standard representation of a data structure. With this format, humans can read and all programming languages have a JSON reader and writer.
-
-5) The console
-
-    The console is program called console.py that contains the entry point of the command interpreter:
-
-        You must use the module cmd
-        Your class definition must be: class HBNBCommand(cmd.Cmd):
-        Your command interpreter should implement:
-            - quit and EOF to exit the program
-            - help (this action is provided by default by cmd but you should keep it updated and documented as you work through tasks)
-            a custom prompt: (hbnb)
-            an empty line + ENTER shouldn’t execute anything
-        Your code should not be executed when imported
-
-
-
-6) Credits:
-
-    This project was possible because of the help of cohort 19 pear around the globe that help us with some problems during the process.
-
-7) About the Authors
-
-    Check AUTHORS file for more information
-
-8) Contributors:
-
-    - Obed Rayo
-    - Esteban Enríquez Ruales
-    - Joaquín Jones
-    - Mauricio De Betolaza Del Puerto
-    - Eps Rarima
- 
-9) Resources
-    - Holberton Documentation
-    - Google Documentation
-    - Chat GPT
-
-
-
-
+## Authors
+- Camilo Estrada B- <cestrad5@gmail.com>
+- Luis Alejandro Puerta - <puertaalejo02@gmail.com>
